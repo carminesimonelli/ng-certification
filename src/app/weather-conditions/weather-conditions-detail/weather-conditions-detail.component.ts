@@ -23,6 +23,4 @@ export class WeatherConditionsDetailComponent implements OnInit {
     this.locationRemoved.emit(this.location);
   }
 
-
-
 }

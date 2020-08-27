@@ -3,6 +3,7 @@ import {NgForm} from '@angular/forms';
 import {LocalStorageService} from '../../shared/local-storage.service';
 import {ICO_MAPPING, WeatherService} from '../../shared/weather.service';
 import {WeatherConditionsDetail} from '../../shared/weather.model';
+import {EXISTING_ZIPCODE_MESSAGE, WRONG_ZIPCODE_MESSAGE} from '../../shared/constants';
 
 @Component({
   selector: 'app-weather-conditions-search',
@@ -14,7 +15,7 @@ export class WeatherConditionsSearchComponent implements OnInit {
   @Output() locationAdded = new EventEmitter<WeatherConditionsDetail>();
   @ViewChild('f') locationForm: NgForm;
   showAlert: boolean;
-  errorMessage = 'It\'s not possible to add this location! Try with another zipcode!';
+  errorMessage: string;
 
   constructor(private localStorageService: LocalStorageService, private weatherService: WeatherService) { }
 
@@ -32,11 +33,11 @@ export class WeatherConditionsSearchComponent implements OnInit {
         this.locationAdded.emit(weatherConditionsDetail);
       } else {
         this.showAlert = true;
-        this.errorMessage = 'It\'s not possible to add this location! It\'s aleady present!';
+        this.errorMessage = EXISTING_ZIPCODE_MESSAGE;
       }
     }, error => {
       this.showAlert = true;
-      this.errorMessage = 'It\'s not possible to add this location! Try with another zipcode!';
+      this.errorMessage = WRONG_ZIPCODE_MESSAGE;
     });
   }
 
