@@ -1,0 +1,6 @@
+<div class="container-fluid">
+  <app-weather-conditions-search (locationAdded)="onLocationAdded($event)"></app-weather-conditions-search>
+  <div *ngFor="let location of locationsList">
+    <app-weather-conditions-detail [location] = "location" (locationRemoved)="onLocationRemoved($event)"></app-weather-conditions-detail>
+  </div>
+</div>

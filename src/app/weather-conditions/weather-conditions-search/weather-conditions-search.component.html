@@ -1,0 +1,19 @@
+<div class="well">
+  <form (ngSubmit)="addLocation()" #f="ngForm">
+    <h2>Enter a zipcode:</h2>
+    <input class="form-control" placeholder="Zipcode" type="text" id="addLocation" ngModel name="zipCode" required minlength="5" #zipCode="ngModel">
+    <span *ngIf="!zipCode.valid && zipCode.touched" class="validationError">Please insert a valid zipcode!</span>
+    <br>
+    <button type="submit" class="btn btn-primary" id="addLocationBtn" [disabled]="!f.valid">
+      Add location
+    </button>
+  </form>
+  <div *ngIf="showAlert" class="alert alert-danger" role="alert" id="alert">
+    {{ errorMessage }}
+    <button type="button" class="close" aria-label="Close">
+      <span aria-hidden="true" (click)="hideAlert()">&times;</span>
+    </button>
+  </div>
+</div>
+
+
